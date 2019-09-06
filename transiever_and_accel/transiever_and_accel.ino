@@ -23,7 +23,6 @@ void wakeUp()
     for(uint8_t i=0;i<8;i++){
       adc=analogRead(ADC_PIN);
     }
-    Serial.println(adc);
     data[1]=highByte(adc);
     data[2]=lowByte(adc);
     radio.powerUp();
@@ -35,8 +34,6 @@ void wakeUp()
 void setup(void) {
   pinMode(INT1_PIN,INPUT_PULLUP);
   pinMode(ADC_PIN, INPUT);
-  Serial.begin(9600);
-  //Serial.println("START");
   radio.begin();                        // Инициируем работу nRF24L01+
   radio.setChannel(100);                // Указываем канал передачи (от 0 до 126)
   radio.setDataRate (RF24_1MBPS);       // Указываем скорость передачи (250KBPS, 1MBPS, 2MBPS)
@@ -66,7 +63,6 @@ void loop(void)
     for(uint8_t i=0;i<8;i++){
       adc=analogRead(ADC_PIN);
     }
-    Serial.println(adc);
     data[1]=highByte(adc);
     data[2]=lowByte(adc);
     radio.powerUp();
